@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <h1>Productive Timer</h1>
-    <setter v-if="editMode" @set="setTime" :startedTime="time"></setter>
-    <timer v-else @edit="startEdit" :startedTime="time"></timer>
+    <setter v-if="editMode" @set="setTime" @setAudio="setAudio" :startedTime="time"></setter>
+    <timer v-else @edit="startEdit" :audio="audio" :startedTime="time"></timer>
   </div>
 </template>
 
@@ -18,10 +18,14 @@ export default {
   data(){
     return{
       editMode: false,
-      time: 0
+      time: 0,
+      audio: null
     }
   },
   methods:{
+    setAudio(value){
+      this.audio = value;
+    },
     startEdit(value){
       this.editMode = true;
       this.time = value;

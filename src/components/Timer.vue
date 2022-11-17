@@ -25,6 +25,9 @@ export default {
       type: Number,
       required: true,
     },
+    audio: {
+      type: Object,
+    },
   },
   data() {
     return {
@@ -54,6 +57,15 @@ export default {
     },
     finish() {
       this.timerTime = 0;
+      this.playAlarm();
+    },
+    playAlarm() {
+      let music = document.getElementById("alarm");
+      music.currentTime = 0;
+      music.play();
+      setTimeout(() => {
+        music.pause();
+      }, 3000);
     },
     set() {
       this.$emit("edit", this.timerTime);
@@ -79,6 +91,12 @@ export default {
       return result;
     },
   },
+  watch:{
+    timerTime(){
+      if(this.timerTime == 0)
+        this.finish()
+    }
+  }
 };
 </script>
 

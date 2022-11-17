@@ -14,9 +14,6 @@
     <button @click="set">Set</button>
     <button @click="clear">Clear</button>
   </div>
-  <div class="actions">
-    <button @click="setAudio">Set audio</button>
-  </div>
 </template>
 
 <script>
@@ -39,9 +36,6 @@ export default {
     this.divide();
   },
   methods: {
-    setAudio(){
-        this.$emit('audioChange');
-    },
     divide() {
       let seconds = (this.startedTime % 60).toString();
       let minutes = Math.floor(this.startedTime / 60).toString();
@@ -87,6 +81,9 @@ export default {
 </script>
 
 <style scoped>
+#file-loader{
+  display: none;
+}
 .top {
   transform: rotateX(180deg);
 }
